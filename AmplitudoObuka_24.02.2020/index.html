@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   
+    <h1>Forma</h1>
+
+<form id="firstForm" enctype="multipart/form-data" action="submit.php" method="POST">
+
+<label for="text">Ime i prezime</label>
+<input type="text" id="text" name="name_surname">
+
+<label for="email">Email</label>
+<input type="email" id="email" name="email">
+
+<label for="age">Godine</label>
+<input type="number" id="age" name="age">
+
+<label for="vehicle">Prevozno sredstvo</label>
+<select id="vehicle" name="vehicle">
+    <option value="bike">Biciklo</option>
+    <option value="bus">Bus</option>
+    <option value="car">Auto</option>
+</select>
+
+<label>Biciklo</label>
+<input type="checkbox" name="vehicleCheckbox[]" value="bike"/>
+
+<label>Bus</label>
+<input type="checkbox" name="vehicleCheckbox[]" value="bus"/>
+
+<label>Auto</label>
+<input type="checkbox" name="vehicleCheckbox[]" value="car"/>
+
+
+<label for="image">Fajl</label>
+<input type="file" name="image" id="image"/>
+
+<input type="submit" value="Potvrdi"/>
+
+</form>
+
+</body>
+</html>
