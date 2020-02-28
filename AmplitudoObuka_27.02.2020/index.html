@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Amplitudo Obuka</title>
+    <!-- css fajlovi za bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+        integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- u klasi 'container' obicno ide sav sadrzaj ('container-fluid' ako zelimo da zauzima citav width strane) -->
+    <div class="container">
+        <!-- klasa 'row' predstavlja jedan red i potrebna je da bude unutar div-a sa klasom 'container' i da bude parent div klasi 'col'-->
+        <div class="row w-100">
+            <!-- klasa 'col' predstavlja kolonu unutar reda. Zbir vrijednosti kolona u redu je 12. Prefiksi sm, md, lg, xl za breakpoint-e (razlicite sirine ekrana) -->
+            <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                <!-- klasa 'card' za kartice. Klasa 'm' za margine. Prefiksi mt, mb , ml, mr (top, bottom...). Prefiksi sm, md, lg, xl (isto kao za 'col'). Vrijednosti od 0-5-->
+                <!-- primjeri mt-5, mt-sm-0, mx-lg-4, m-3...-->
+                <!-- klasa 'w' predstavlja procenat sirine koji child zauzima u parent-u i ima vrijednosti 50, 75, 100 (takodje postoji klasa 'h' koja radi isto samo za height) -->
+                <div class="card mt-5 w-100">
+                    <img height="200px" src="http://www.jennybeaumont.com/wp-content/uploads/2015/03/placeholder.gif"
+                        class="card-img-top" alt="...">
+                    <!-- klasa 'p' za padding, koristi iste prefikse kao i klasa 'm' -->
+                    <div class="card-body p-2">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the
+                            card's content.</p>
+                        <!-- klasa 'btn' za stil za dugme (moze i na a href ili na druge slicne elemente). Obicno ide sa klasama 'btn-info', 'btn-primary', 'btn-secondary'... -->
+                        <a href="#" class="btn btn-info">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                <div class="card mt-5 w-100">
+                    <img height="200px" src="http://www.jennybeaumont.com/wp-content/uploads/2015/03/placeholder.gif"
+                        class="card-img-top" alt="...">
+                    <div class="card-body p-2">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the
+                            card's content.</p>
+                        <a href="#" class="btn btn-info">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                <div class="card mt-5 w-100">
+                    <img height="200px" src="http://www.jennybeaumont.com/wp-content/uploads/2015/03/placeholder.gif"
+                        class="card-img-top" alt="...">
+                    <div class="card-body p-2">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the
+                            card's content.</p>
+                        <a href="#" class="btn btn-info">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                <div class="card mt-5 w-100">
+                    <img height="200px" src="http://www.jennybeaumont.com/wp-content/uploads/2015/03/placeholder.gif"
+                        class="card-img-top" alt="...">
+                    <!-- klasa 'p' za padding, koristi iste prefikse kao i klasa 'm' -->
+                    <div class="card-body p-2">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the
+                            card's content.</p>
+                        <a href="#" class="btn btn-info">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* kada zelimo da override postojeci css, inline css ima prednost tako da ne mora da ide important */
+        .row {
+            color: red !important;
+        }
+    </style>
+
+    <!-- js fajlovi za bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+        integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
