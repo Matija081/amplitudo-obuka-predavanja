@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <style>
+    .items:hover {
+      cursor: pointer;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row mt-5 justify-content-center">
+      <div class="col-12 mb-2 text-center">
+
+        <h1>Player : <span id="player-score">0</span></h1>
+        <h1>Protivnik: <span id="opponent-score">0</span></h1>
+
+      </div>
+
+      <div class="col-3"><img class="items" width="100%" data-item="paper" height="250px;" src="paper.jpg" /></div>
+      <div class="col-3"><img class="items" width="100%" data-item="scissors" height="250px;" src="scissors.png" />
+      </div>
+      <div class="col-3"><img class="items" width="100%" data-item="rock" height="250px;" src="rock.jpg" /></div>
+
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+    <!--biblioteka za stilizovani alert-->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+  <script>
+
+    //korisnikov score
+    var playerScore = 0;
+    //score kompjutera
+    var opponentScore = 0;
+
+    //na klik uzimam korisnikov odabir, pozivam funkciju da dobijem odabir kompjutera
+    //pozivam funkciju da na osnovu odabera prikaze ko je pobijedio
+    $('.items').click(function () {
+      // alert('Test');
+      // var itemValue = $(this).attr('data-item');
+      var playerSelect = $(this).data('item');
+      // alert(itemValue);
+      // console.log(itemValueSecond);
+      // console.log(computerChoice());
+      var computerSelect = computerChoice();
+      gameRules(playerSelect, computerSelect);
+    });
+
+    //funkcija koja vraca odabir kompjutera na osnovu random funkcije
+    function computerChoice() {
+      // console.log(getRandomInt(0,2));
+      var randomNumber = getRandomInt(0, 2);
+      if (randomNumber == 0) {
+        return 'paper';
+      } else if (randomNumber == 1) {
+        return 'rock';
+      } else {
+        return 'scissors';
+      }
+    }
+
+    //js nema nativnu funkciju za random broj u range-u
+    //ovo je funkcija kojoj dajem min i max i koja vraca random broj unutar tog range-a
+    function getRandomInt(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    //definisem pravila, tj ispisujem rezultat u zavisnosti od odabira igraca i kompjutera
+    function gameRules(player, opponent) {
+      if (player == 'rock' && opponent == 'scissors') {
+        renderPlayerScore();
+      } else if (player == 'paper' && opponent == 'rock') {
+        renderPlayerScore();
+      } else if (player == 'scissors' && opponent == 'paper') {
+        renderPlayerScore();
+      } else if (player == opponent) {
+        // alert('Nerijeseno');
+        swal("Oops", "Nerijeseno", "error")
+      } else {
+        opponentScore++;
+        $('#opponent-score').html(opponentScore);
+        // alert('Kompjuter je dobio');
+        swal("Oops", "Kompjuter je dobio", "error")
+      }
+    }
+
+    //update-ujem rezultat korisnika (prikazujem u odgovarajuce polje)
+    function renderPlayerScore() {
+      playerScore++;
+      $('#player-score').html(playerScore);
+      // alert('Korisnik je dobio');
+      swal("Oops", "Korisnik je dobio", "error")
+    }
+
+  </script>
+
+</body>
+
+
+</html>

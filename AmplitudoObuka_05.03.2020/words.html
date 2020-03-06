@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row mt-5 justify-content-center">
+            <div class="col-6">
+
+                <div class="form-group">
+                    <label for="">Unesite tekst</label>
+                    <textarea class="form-control" id="input-value" rows="10"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="speed">Brzina</label>
+                    <input type="range" class="form-control" id="speed" value="1" min="1" max="10">
+                </div>
+
+                <button id="submit-btn" class="btn btn-primary">Submit</button>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="show-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <h1 id="value-output">Body</h1>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script>
+
+        //niz timeout-a
+        var allTimeouts = new Array();
+        //brzina mijenjanja rijeci
+        var speed = 1;
+
+        //na klik dugmeta otvarama modela i prolazim kroz niz rijeci
+        //za svaku rijec stavljam timeout (delay izmedju iteracija) i ispisujem rijec u odgovarajuce polje
+        //timeout stavljam u varijablu koju dodajem globalnom nizu, da bih zaustavio sve timeout-e pri izlasku iz modala (zbog greske)
+        $('#submit-btn').click(function () {
+            // alert(getValue()[0]);
+            var inputValue = getValue();
+
+            for (let i = 0; i < inputValue.length; i++) {
+                var currentTimeout = setTimeout(function () {
+                    // console.log(i);
+                    renderWord(inputValue[i]);
+                }, i * 100 * speed);
+
+                allTimeouts.push(currentTimeout);
+            }
+
+            $('#show-modal').modal('show');
+        });
+
+        //prikazujem rijec u odgovarajuci element <h1>
+        function renderWord(word) {
+            $('#value-output').html(word);
+        }
+
+        //uzimam vrijednost textarea i vracam array rijeci
+        function getValue() {
+            var inputValue = $('#input-value').val();
+            return inputValue.split(' ');
+        }
+
+        //na event za zatvaranje modala prolazim kroz niz timeout-a i zatvaram ih
+        $("#show-modal").on("hidden.bs.modal", function () {
+            // alert('Modal je zatvoren!');
+            for (var i = 0; i < allTimeouts.length; i++) {
+                clearTimeout(allTimeouts[i]);
+            }
+            //brisem elemente iz niz-a da ne bi prolazio kroz elemente (timeout-e) koji su zatvoreni
+            allTimeouts = [];
+        });
+
+        //na promjenu input-range-a uzimam vrijednost i stavljam ga globalnoj varijabli za brzinu
+        $('#speed').change(function () {
+            // alert('Ovo je vrijednost: ' + $('#speed').val());
+            speed = $('#speed').val();
+            // alert(speed);
+        });
+
+    </script>
+
+</body>
+
+</html>
