@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-6">
+
+                <form id="submit-form">
+
+                    <div class="form-group">
+                        <label for="name-surname">Ime i prezime</label>
+                        <input type="text" class="form-control" name="name_surname" id="name-surname"
+                            aria-describedby="helpId" placeholder="">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId"
+                            placeholder="">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script>
+
+        $('#submit-form').submit(function (event) {
+            event.preventDefault();
+            // var formData = new FormData($(this)[0]);
+            // formData.append(nameSurname, 'test');
+            var formData = new FormData($(this)[0]);
+            console.log(formData);
+            // var formData = 'nameSurname=' + $('#name-surname').val();
+            formData.append('kljuc', 'vrijednost');
+            $.ajax({
+                url: 'submit.php',
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                // data: 'key=value&test=obuka',
+                data: formData,
+                success: function (returndata) {
+                    console.log(returndata);
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -13,15 +13,16 @@
 <body>
 
     <div class="container mt-5">
-        <div class="row">
-            <button class="btn btn-primary" id="renderBtn">Render</button>
-        </div>
-        <div class="row" id="cards">
+
+        <div class="row" id="posts">
+
 
         </div>
         <!-- /.row -->
 
     </div>
+
+
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
@@ -32,46 +33,32 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
+
     <script>
 
-        // $(document).ready(function () {
-        //     getData();
-        // });
+        $(document).ready(function(){
 
-        $('#renderBtn').click(function(){
-            // alert('Test');
-            getData();
-        });
-
-        function getData() {
-            $.ajax({
-                url: 'https://jsonplaceholder.typicode.com/posts',
-                type: 'GET',
-                success: function (returndata) {
-                    // console.log(returndata);
-                    // console.log(returndata[0]);
-                    // console.log(returndata[0].id);
-                    for (var i = 0; i < 10; i++) {
-                        var card = getCard(returndata[i]);
-                        $('#cards').append(card);
-                    }
-                },
-                error: function () {
-                    console.log('Error');
+            $.getJSON('https://jsonplaceholder.typicode.com/album/1/photos', function(returndata){
+                // console.log('Test');
+                // console.log(returndata);
+                for(var i = 0; i < 10; i++){
+                    var card = getCard(returndata[i]);
+                    $('#posts').append(card);
                 }
             });
-        }
 
-        function getCard(postObject) {
+        });
+
+        function getCard(photoObject) {
             return ` <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                    <a href="#"><img class="card-img-top" src="` + photoObject.thumbnailUrl + `" alt=""></a>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="#">`+ postObject.title + `</a>
+                            <a href="#">`+ photoObject.title + `</a>
                         </h4>
-                        <h5>`+ postObject.id + `</h5>
-                        <p class="card-text">`+ postObject.body + `</p>
+                        <h5>`+ photoObject.id + `</h5>
+                        <p class="card-text">`+ photoObject.url + `</p>
                     </div>
                     <div class="card-footer">
                         <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
